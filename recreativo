@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>El Recreativo | Ojo al Click</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fondo: #050a14; --cian: #00ffff; --fucsia: #ff00ff; --amarillo: #fbff00; }
+        
+        body { 
+            background: var(--fondo); 
+            color: white; 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            overflow: hidden; 
+            touch-action: none;
+        }
+
+        /* Efecto de pantalla de TV vieja */
+        #game-container::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 10;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        #game-container { position: relative; width: 100vw; height: 100vh; }
+        canvas { display: block; filter: contrast(1.2) brightness(1.1); }
+
+        #ui { position: absolute; top: 20px; left: 20px; pointer-events: none; z-index: 20; }
+        .stat { font-size: 1.5rem; text-shadow: 2px 2px var(--fucsia); margin-bottom: 5px; }
+        
+        #mensaje-inicio {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            text-align: center; background: rgba(0,0,0,0.9); padding: 40px;
+            border: 4px solid var(--fucsia); border-radius: 10px; z-index: 30;
+            box-shadow: 0 0 20px var(--fucsia);
+        }
+
+        button {
+            background: var(--cian); color: #000; border: none; padding: 15px 40px;
+            font-family: 'Montserrat'; font-weight: 900; cursor: pointer;
+            font-size: 1.5rem; box-shadow: 0 5px 0 #008888; transition: 0.1s;
+        }
+
+        button:active { transform: translateY(4px); box-shadow: none; }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+    
+    <div id="ui">
+        <div class="stat">PUNTOS: <span id="score">0</span></div>
+        <div class="stat">VIDAS: <span id="lives">3</span></div>
+    </div>
+
+    <div id="mensaje-inicio">
+        <h1 style="color:var(--cian); font-size: 3rem; margin: 0;">EL RECREATIVO</h1>
+        <p style="color:var(--amarillo)">ATRAPA LOS CLICKS, ESQUIVA LOS BULOS</p>
+        <button onclick="startGame()">INSERT COIN</button>
+    </div>
+</div>
+
+<audio id="musica-juego" src="himno.mp3" loop></audio>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const musica = document.getElementById('musica-juego');
+const scoreEl = document.getElementById('score');
+const livesEl = document.getElementById('lives');
+const menu = document.getElementById('mensaje-inicio');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let score = 0, lives = 3, gameRunning = false, items = [];
+let player = { x: canvas.width / 2, y: canvas.height - 100, w: 80, h: 80 };
+
+window.addEventListener('mousemove', (e) => { player.x = e.clientX - player.w/2; });
+window.addEventListener('touchmove', (e) => { 
+    player.x = e.touches[0].clientX - player.w/2;
+    e.preventDefault();
+}, {passive: false});
+
+function startGame() {
+    score = 0; lives = 3; items = [];
+    scoreEl.innerText = score; livesEl.innerText = lives;
+    gameRunning = true;
+    menu.style.display = 'none';
+    musica.volume = 0.5;
+    musica.play(); // ¡Empieza el himno!
+    animate();
+}
+
+function createItem() {
+    const isFake = Math.random() > 0.6;
+    items.push({
+        x: Math.random() * (canvas.width - 40),
+        y: -50,
+        speed: 4 + (score / 100), // Se acelera según ganas puntos
+        type: isFake ? '💣' : '🖱️',
+        isFake: isFake
+    });
+}
+
+function animate() {
+    if (!gameRunning) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar el "Ojo" del jugador
+    ctx.font = '70px Arial';
+    ctx.fillText('👁️', player.x, player.y + 60);
+
+    if (Math.random() < 0.05) createItem();
+
+    items.forEach((item, index) => {
+        item.y += item.speed;
+        ctx.font = '40px Arial';
+        ctx.fillText(item.type, item.x, item.y);
+
+        // Colisión simple
+        if (item.y > player.y && item.y < player.y + player.h &&
+            item.x > player.x && item.x < player.x + player.w) {
+            
+            if (item.isFake) {
+                lives--;
+                livesEl.innerText = lives;
+                ctx.fillStyle = "rgba(255, 0, 255, 0.5)";
+                ctx.fillRect(0,0, canvas.width, canvas.height);
+            } else {
+                score += 10;
+                scoreEl.innerText = score;
+            }
+            items.splice(index, 1);
+        }
+        if (item.y > canvas.height) items.splice(index, 1);
+    });
+
+    if (lives <= 0) {
+        gameRunning = false;
+        musica.pause();
+        menu.style.display = 'block';
+        menu.innerHTML = `<h1 style="color:var(--fucsia)">GAME OVER</h1><p>SCORE: ${score}</p><button onclick="startGame()">RETRY</button>`;
+    } else {
+        requestAnimationFrame(animate);
+    }
+}
+</script>
+</body>
+</html>
