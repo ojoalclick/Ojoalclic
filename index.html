@@ -38,6 +38,11 @@
 
         .nav-logo img { height: 60px; filter: drop-shadow(0 0 5px var(--cian)); }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links a {
             color: var(--blanco);
             text-decoration: none;
@@ -55,6 +60,20 @@
             color: var(--fucsia);
             text-shadow: 0 0 15px var(--fucsia), 0 0 30px var(--fucsia);
             transform: scale(1.1);
+        }
+
+        /* --- BOTÓN ESPECIAL RECREATIVO --- */
+        .btn-recreativo {
+            border: 2px solid var(--amarillo) !important;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: var(--amarillo) !important;
+            animation: glow-simple 1.5s infinite alternate;
+        }
+
+        @keyframes glow-simple {
+            from { box-shadow: 0 0 5px var(--amarillo); }
+            to { box-shadow: 0 0 15px var(--amarillo); }
         }
 
         /* --- TÍTULOS DE SECCIÓN --- */
@@ -162,6 +181,7 @@
             <a href="#articulos">ARTÍCULOS</a>
             <a href="#himno">HIMNO</a>
             <a href="#rrss">RRSS</a>
+            <a href="recreativo.html" class="btn-recreativo">🕹️ RECREATIVO</a>
         </div>
     </nav>
 
@@ -180,7 +200,7 @@
                 <p style="font-size: 1.1rem; line-height: 1.6;">¿Crees que internet es solo TikTok? Descubre la bestia de cables y tiburones que hay bajo tus pies.</p>
                 <a href="articulos/el-iceberg.html" style="color: var(--fucsia); text-decoration: none; font-weight: 900; font-size: 1.2rem;">LEER COMPLETO →</a>
             </div>
-            </div>
+        </div>
     </section>
 
     <section id="himno">
