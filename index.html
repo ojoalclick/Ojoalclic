@@ -3,211 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ojo al Click | Tu guía digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Orbitron:wght@400;900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Ojo al Click | Domina la Red</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --fondo: #050a14;
-            --cian: #00ffff;
-            --fucsia: #ff00ff;
-            --amarillo: #fbff00;
-            --blanco: #ffffff;
+        :root { 
+            --fondo: #050a14; 
+            --cian: #00ffff; 
+            --fucsia: #ff00ff; 
+            --amarillo: #fbff00; 
+            --blanco: #ffffff; 
         }
 
-        body {
-            background-color: var(--fondo);
-            color: var(--blanco);
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            scroll-behavior: smooth;
+        body { 
+            background-color: var(--fondo); 
+            color: var(--blanco); 
+            font-family: 'Open Sans', sans-serif; 
+            margin: 0; 
+            text-align: center;
         }
 
-        /* --- NAVEGACIÓN --- */
+        /* --- MENÚ DE NAVEGACIÓN --- */
         nav {
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            border-bottom: 2px solid var(--cian);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(5, 10, 20, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--cian);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-        }
-
-        .nav-logo img { height: 60px; filter: drop-shadow(0 0 5px var(--cian)); }
-
-        .nav-links a {
-            color: var(--blanco);
-            text-decoration: none;
-            margin-left: 25px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            transition: 0.3s;
-            text-transform: uppercase;
-            text-shadow: 0 0 5px var(--cian);
-        }
-
-        .nav-links a:hover {
-            color: var(--fucsia);
-            text-shadow: 0 0 15px var(--fucsia), 0 0 30px var(--fucsia);
-            transform: scale(1.1);
-        }
-
-        /* --- TÍTULOS DE SECCIÓN --- */
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--blanco);
-            text-shadow: 5px 5px var(--fucsia);
-            -webkit-text-stroke: 1.5px var(--cian);
-            letter-spacing: -2px;
-        }
-
-        /* --- HERO / INICIO --- */
-        .hero {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle, rgba(0,255,255,0.15) 0%, rgba(5,10,20,1) 75%);
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .hero-logo-ojo {
-            width: 280px;
-            max-width: 80%;
-            animation: float 4s ease-in-out infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); filter: drop-shadow(0 0 15px var(--cian)); }
-            50% { transform: translateY(-25px) rotate(3deg); filter: drop-shadow(0 0 35px var(--fucsia)); }
-        }
-
-        /* --- SECCIÓN ARTÍCULOS --- */
-        #articulos { padding: 100px 10%; background: #080f1d; }
-        .grid-articulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        
-        .card-blog {
-            background: #0d1a30;
-            padding: 35px;
-            border-radius: 20px;
-            border: 3px solid var(--cian);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .card-blog:hover {
-            border-color: var(--amarillo);
-            box-shadow: 0 0 40px rgba(251, 255, 0, 0.4);
-            transform: scale(1.05);
-        }
-
-        /* --- SECCIÓN HIMNO --- */
-        #himno { 
-            padding: 120px 10%; 
-            background: linear-gradient(180deg, #080f1d 0%, #1a0a2e 100%);
-            text-align: center;
-        }
-        
-        .audio-player {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 50px;
-            border-radius: 60px;
-            border: 3px solid var(--fucsia);
-            display: inline-block;
-            box-shadow: 0 0 25px rgba(255, 0, 255, 0.2);
-        }
-
-        audio { 
-            filter: invert(100%) hue-rotate(180deg) brightness(1.5); 
-            width: 320px; 
-            margin: 20px 0;
-        }
-
-        /* --- SECCIÓN RRSS --- */
-        #rrss { padding: 100px 10%; text-align: center; }
-        .social-btns { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .btn-social {
-            padding: 25px 50px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            text-decoration: none;
+        .nav-btn {
             color: var(--blanco);
-            border: 4px solid var(--blanco);
-            transition: 0.3s ease;
+            text-decoration: none;
+            font-family: 'Montserrat';
             font-weight: 900;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            transition: 0.3s;
         }
-        .btn-tiktok:hover { background: #ff0050; border-color: #00f2ea; box-shadow: 8px 8px 0px #00f2ea; transform: translate(-4px, -4px); }
-        .btn-insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: white; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
 
+        .nav-btn:hover {
+            color: var(--cian);
+            border-bottom: 1px solid var(--cian);
+        }
+
+        /* --- EL BOTÓN ESPECIAL DEL RECREATIVO --- */
+        .nav-game-btn {
+            color: var(--amarillo);
+            text-decoration: none;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border: 2px solid var(--amarillo);
+            border-radius: 5px;
+            animation: glow 1.5s infinite alternate;
+            transition: 0.3s;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px var(--amarillo); }
+            to { box-shadow: 0 0 20px var(--amarillo), 0 0 10px var(--fucsia); }
+        }
+
+        .nav-game-btn:hover {
+            background: var(--amarillo);
+            color: #000;
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        /* --- SECCIÓN HERO --- */
+        .hero {
+            padding: 100px 20px;
+            background: linear-gradient(rgba(5,10,20,0.8), rgba(5,10,20,0.8)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80');
+            background-size: cover;
+            border-bottom: 5px solid var(--fucsia);
+        }
+
+        h1 { 
+            font-family: 'Montserrat'; 
+            font-size: clamp(2.5rem, 8vw, 5rem); 
+            color: var(--cian); 
+            text-shadow: 5px 5px var(--fucsia); 
+            margin: 0;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--amarillo);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* --- BOTÓN DE AUDIO (HIMNO) --- */
+        #audio-controls { margin-top: 30px; }
+        .audio-btn {
+            background: var(--fucsia);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            cursor: pointer;
+            border-radius: 50px;
+            box-shadow: 0 5px 0 #b00040;
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-logo">
-            <img src="logo-texto.jpg" alt="Ojo al Click">
-        </div>
-        <div class="nav-links">
-            <a href="#inicio">INICIO</a>
-            <a href="#articulos">ARTÍCULOS</a>
-            <a href="#himno">HIMNO</a>
-            <a href="#rrss">RRSS</a>
-        </div>
+        <a href="index.html" class="nav-btn">INICIO</a>
+        <a href="#articulos" class="nav-btn">ARTÍCULOS</a>
+        <a href="recreativo.html" class="nav-game-btn">🕹️ EL RECREATIVO</a>
     </nav>
 
-    <section class="hero" id="inicio">
-        <img src="logo-ojo.jpg" alt="Ojo Glitch" class="hero-logo-ojo">
-        <h1 class="section-title">OJO AL CLICK</h1>
-        <p style="font-size: 1.8rem; color: var(--cian); font-weight: bold; text-shadow: 0 0 10px var(--cian);">¡NAVEGA SIN QUEMARTE! 🔥</p>
-    </section>
-
-    <section id="articulos">
-        <h2 class="section-title">ARTÍCULOS TOP</h2>
-        <div class="grid-articulos">
-            <div class="card-blog">
-                <span style="color: var(--amarillo); font-family: 'Orbitron'; font-weight: 900;">[ MISIÓN 01 ]</span>
-                <h3 style="color: var(--cian); font-size: 1.8rem;">🌐 EL ICEBERG DIGITAL</h3>
-                <p style="font-size: 1.1rem; line-height: 1.6;">¿Crees que internet es solo TikTok? Descubre la bestia de cables y tiburones que hay bajo tus pies.</p>
-                <a href="articulos/el-iceberg.html" style="color: var(--fucsia); text-decoration: none; font-weight: 900; font-size: 1.2rem;">LEER COMPLETO →</a>
-            </div>
-            </div>
-    </section>
-
-    <section id="himno">
-        <h2 class="section-title">NUESTRO HIMNO</h2>
-        <div class="audio-player">
-            <p style="margin-bottom: 25px; font-family: 'Orbitron'; font-size: 1.2rem; color: var(--cian);">🎵 SUBE EL VOLUMEN AL POP 🎵</p>
-            
-            <audio controls>
-                <source src="https://github.com/ojoalclick/Ojoalclick/releases/download/himno/himno.mp3" type="audio/mpeg">
-                Tu navegador no soporta el audio.
-            </audio>
-            
-            <p style="margin-top: 25px; font-size: 0.9rem; opacity: 0.8; font-style: italic;">"Click, click, la red te espera..."</p>
+    <header class="hero">
+        <h1>OJO AL CLICK</h1>
+        <p class="tagline">¡Domina la red antes de que ella te domine a ti! 👁️🖱️</p>
+        
+        <div id="audio-controls">
+            <button class="audio-btn" onclick="toggleAudio()">🎵 REPRODUCIR HIMNO</button>
+            <audio id="background-audio" src="himno.mp3" loop></audio>
         </div>
-    </section>
+    </header>
 
-    <section id="rrss">
-        <h2 class="section-title">SÍGUENOS</h2>
-        <div class="social-btns">
-            <a href="https://tiktok.com" target="_blank" class="btn-social btn-tiktok">TIKTOK</a>
-            <a href="https://instagram.com" target="_blank" class="btn-social btn-insta">INSTAGRAM</a>
+    <main class="container" id="articulos" style="padding: 50px 20px;">
+        <h2 style="font-family: 'Montserrat'; color: var(--fucsia); font-size: 2rem;">📰 ÚLTIMAS INVESTIGACIONES</h2>
+        
+        <div style="margin-top: 40px;">
+            <a href="articulos/el-iceberg.html" style="text-decoration: none; color: inherit;">
+                <div style="background: rgba(0,255,255,0.1); border: 2px solid var(--cian); padding: 30px; border-radius: 15px; transition: 0.3s; max-width: 600px; margin: 0 auto;">
+                    <h3 style="color: var(--cian); margin-top: 0;">🌐 EL ICEBERG DIGITAL</h3>
+                    <p>¿Sabías que Internet tiene cables bajo el mar y que los tiburones los muerden? Descubre la historia de la "Rata Pisada".</p>
+                    <span style="color: var(--amarillo); font-weight: bold;">LEER MÁS →</span>
+                </div>
+            </a>
         </div>
-    </section>
+    </main>
 
-    <footer style="text-align: center; padding: 60px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1);">
-        <p>&copy; 2026 Ojo al Click - Educando a la generación del futuro 👁️🖱️</p>
-    </footer>
-
+    <script>
+        function toggleAudio() {
+            const audio = document.getElementById('background-audio');
+            const btn = document.querySelector('.audio-btn');
+            if (audio.paused) {
+                audio.play();
+                btn.innerText = "⏸️ PAUSAR HIMNO";
+                btn.style.background = var(--cian);
+            } else {
+                audio.pause();
+                btn.innerText = "🎵 REPRODUCIR HIMNO";
+                btn.style.background = var(--fucsia);
+            }
+        }
+    </script>
 </body>
 </html>
