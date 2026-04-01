@@ -1,61 +1,96 @@
-// ... (dentro del script de recreativo.html) ...
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Recreativo | Ojo al Click</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fondo: #050a14; --cian: #00ffff; --fucsia: #ff00ff; --amarillo: #fbff00; --blanco: #ffffff; }
+        body { background-color: var(--fondo); color: var(--blanco); font-family: 'Orbitron', sans-serif; margin: 0; text-align: center; }
+        
+        .container { padding: 60px 20px; }
+        h1 { font-size: 3.5rem; color: var(--cian); text-shadow: 4px 4px var(--fucsia); margin-bottom: 50px; }
 
-function createItem() {
-    const isShark = Math.random() > 0.7; // 30% de probabilidad de tiburón
-    items.push({
-        x: Math.random() * (canvas.width - 50),
-        y: -50,
-        speed: 4 + (score / 150),
-        type: isShark ? '🦈' : '💎', // Tiburón vs Fibra Óptica
-        isFake: isShark
-    });
-}
-
-function animate() {
-    if (!gameRunning) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Dibujamos al jugador (el submarinista de Ojo al Click)
-    ctx.font = '60px Arial';
-    ctx.fillText('🤿', player.x, player.y + 50);
-
-    if (Math.random() < 0.06) createItem();
-
-    items.forEach((item, index) => {
-        item.y += item.speed;
-        ctx.font = '45px Arial';
-        ctx.fillText(item.type, item.x, item.y);
-
-        // Colisión
-        if (item.y > player.y && item.y < player.y + player.h &&
-            item.x > player.x && item.x < player.x + player.w) {
-            
-            if (item.isFake) { // Chocaste con un tiburón
-                lives--;
-                livesEl.innerText = lives;
-                // Efecto visual de mordisco (flash rojo)
-                ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
-                ctx.fillRect(0,0, canvas.width, canvas.height);
-            } else { // Atrapaste fibra óptica
-                score += 15;
-                scoreEl.innerText = score;
-            }
-            items.splice(index, 1);
+        .grid-recreativo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-    });
 
-    if (lives <= 0) {
-        gameRunning = false;
-        musica.pause();
-        // AQUÍ PODRÍAS PONER EL SONIDO DEL MÓDEM AL PERDER
-        menu.style.display = 'block';
-        menu.innerHTML = `
-            <h1 style="color:var(--fucsia)">¡CABLE CORTADO! 🦈</h1>
-            <p>Los tiburones han dejado a tu ciudad sin Internet.</p>
-            <p style="font-size: 2rem;">SCORE: ${score}</p>
-            <button onclick="startGame()">REPARAR CABLE (RETRY)</button>
-        `;
-    } else {
-        requestAnimationFrame(animate);
-    }
-}
+        /* TARJETA DE JUEGO */
+        .arcade-card {
+            background: #0d1a30;
+            border: 4px solid var(--fucsia);
+            padding: 20px;
+            border-radius: 15px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arcade-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 0 30px var(--fucsia);
+            border-color: var(--cian);
+        }
+
+        .arcade-card h3 { color: var(--amarillo); margin: 15px 0; }
+        .arcade-card p { font-family: 'Open Sans', sans-serif; font-size: 0.9rem; margin-bottom: 20px; }
+
+        .play-btn {
+            display: inline-block;
+            background: var(--cian);
+            color: #000;
+            padding: 10px 25px;
+            text-decoration: none;
+            font-weight: 900;
+            border-radius: 5px;
+            transition: 0.2s;
+        }
+
+        .play-btn:hover { background: var(--blanco); transform: scale(1.1); }
+
+        /* JUEGO BLOQUEADO (Para el futuro) */
+        .locked { opacity: 0.5; border-color: #444; filter: grayscale(1); cursor: not-allowed; }
+
+        .back-btn { margin-top: 50px; display: inline-block; color: var(--cian); text-decoration: none; border-bottom: 1px solid var(--cian); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🕹️ EL RECREATIVO</h1>
+        
+        <div class="grid-recreativo">
+            
+            <div class="arcade-card">
+                <div style="font-size: 4rem;">⚓</div>
+                <h3>CONEXIÓN SUBMARINA</h3>
+                <p>Repara los cables de fibra óptica y esquiva a los tiburones hambrientos.</p>
+                <a href="juegos/conexion-submarina.html" class="play-btn">JUGAR AHORA</a>
+            </div>
+
+            <div class="arcade-card locked">
+                <div style="font-size: 4rem;">🕵️‍♂️</div>
+                <h3>DETECTIVE DE BULOS</h3>
+                <p>Próximamente: Aprende a cazar noticias falsas en tiempo récord.</p>
+                <span class="play-btn">BLOQUEADO</span>
+            </div>
+
+            <div class="arcade-card locked">
+                <div style="font-size: 4rem;">🔐</div>
+                <h3>PASSWORD MASTER</h3>
+                <p>Próximamente: Crea la contraseña más fuerte del mundo.</p>
+                <span class="play-btn">BLOQUEADO</span>
+            </div>
+
+        </div>
+
+        <a href="index.html" class="back-btn">← VOLVER A LA PORTADA</a>
+    </div>
+
+</body>
+</html>
