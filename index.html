@@ -20,6 +20,7 @@
             font-family: 'Open Sans', sans-serif;
             margin: 0;
             scroll-behavior: smooth;
+            overflow-x: hidden; /* Evita scroll horizontal */
         }
 
         /* --- NAVEGACIÓN --- */
@@ -97,6 +98,7 @@
             align-items: center;
             text-align: center;
             background: radial-gradient(circle, rgba(0,255,255,0.15) 0%, rgba(5,10,20,1) 75%);
+            padding: 0 5%;
         }
 
         .hero-logo-ojo {
@@ -113,7 +115,7 @@
 
         /* --- SECCIÓN ARTÍCULOS --- */
         #articulos { padding: 100px 10%; background: #080f1d; }
-        .grid-articulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .grid-articulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         
         .card-blog {
             background: #0d1a30;
@@ -139,16 +141,18 @@
         
         .audio-player {
             background: rgba(255, 255, 255, 0.05);
-            padding: 50px;
+            padding: 50px 20px;
             border-radius: 60px;
             border: 3px solid var(--fucsia);
             display: inline-block;
             box-shadow: 0 0 25px rgba(255, 0, 255, 0.2);
+            max-width: 90%;
         }
 
         audio { 
             filter: invert(100%) hue-rotate(180deg) brightness(1.5); 
-            width: 320px; 
+            width: 100%; 
+            max-width: 320px;
             margin: 20px 0;
         }
 
@@ -167,6 +171,37 @@
         }
         .btn-tiktok:hover { background: #ff0050; border-color: #00f2ea; box-shadow: 8px 8px 0px #00f2ea; transform: translate(-4px, -4px); }
         .btn-insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: white; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+
+        /* --- RESPONSIVE / MÓVIL --- */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px 2%;
+            }
+            .nav-logo { margin-bottom: 15px; }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            .nav-links a {
+                margin: 5px;
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+            }
+            #articulos, #himno, #rrss {
+                padding: 60px 5%;
+            }
+            .btn-social {
+                width: 100%;
+                padding: 20px 0;
+                box-sizing: border-box;
+            }
+            .section-title {
+                text-shadow: 3px 3px var(--fucsia);
+                -webkit-text-stroke: 1px var(--cian);
+            }
+        }
 
     </style>
 </head>
@@ -188,7 +223,7 @@
     <section class="hero" id="inicio">
         <img src="logo-ojo.jpg" alt="Ojo Glitch" class="hero-logo-ojo">
         <h1 class="section-title">OJO AL CLIC</h1>
-        <p style="font-size: 1.8rem; color: var(--cian); font-weight: bold; text-shadow: 0 0 10px var(--cian);">¡NAVEGA SIN QUEMARTE! 🔥</p>
+        <p style="font-size: clamp(1.2rem, 5vw, 1.8rem); color: var(--cian); font-weight: bold; text-shadow: 0 0 10px var(--cian);">¡NAVEGA SIN QUEMARTE! 🔥</p>
     </section>
 
     <section id="articulos">
@@ -225,7 +260,7 @@
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 60px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1);">
+    <footer style="text-align: center; padding: 60px 20px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1);">
         <p>&copy; 2026 Ojo al Clic - Educando a la generación del futuro 👁️🖱️</p>
     </footer>
 
