@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Lado Oscuro de la Red | ojo al clic</title>
+    <title>La Huella Eterna | ojo al clic</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -33,8 +33,8 @@
         h1 { 
             font-family: 'Montserrat'; 
             font-size: clamp(2rem, 5vw, 3.5rem); 
-            color: var(--fucsia); 
-            text-shadow: 4px 4px var(--cian); 
+            color: var(--cian); 
+            text-shadow: 4px 4px var(--fucsia); 
             text-transform: uppercase; 
             text-align: center; 
             line-height: 1.1; 
@@ -42,97 +42,93 @@
         }
 
         h2 { 
-            color: var(--cian); 
-            border-left: 5px solid var(--fucsia); 
+            color: var(--fucsia); 
+            border-left: 5px solid var(--cian); 
             padding-left: 15px; 
             margin-top: 50px; 
             font-family: 'Montserrat'; 
             text-transform: uppercase; 
         }
 
-        .destacado-rojo { 
-            background: rgba(255, 62, 62, 0.1); 
-            border: 2px dashed var(--rojo); 
+        .destacado { 
+            background: rgba(0, 255, 255, 0.1); 
+            border: 1px solid var(--cian); 
             padding: 20px; 
             border-radius: 10px; 
             font-size: 1.1rem; 
             margin-bottom: 30px; 
         }
 
+        .alerta-box {
+            background: rgba(255, 62, 62, 0.15);
+            border: 2px solid var(--rojo);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
         .separador { 
             height: 4px; 
-            background: linear-gradient(to right, transparent, var(--cian), var(--fucsia), transparent); 
+            background: linear-gradient(to right, transparent, var(--fucsia), var(--cian), transparent); 
             margin: 50px 0; 
         }
 
-        b { color: var(--amarillo); }
+        b { color: var(--cian); }
+        .warning { color: var(--amarillo); font-weight: bold; }
 
-        /* ESTILOS DE LA MÁQUINA DE MANIPULACIÓN */
+        /* MÁQUINA DE MANIPULACIÓN Y NODOS */
         #contenedor-multimedia {
-            background: #1a1a1a;
-            border: 4px solid var(--cian);
+            background: #111;
+            border: 3px solid var(--fucsia);
             border-radius: 20px;
             padding: 30px;
             text-align: center;
             margin-top: 50px;
-            box-shadow: 0 0 20px var(--cian);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
         }
 
         .pantalla-fake {
             background: #000;
             width: 100%;
-            height: 200px;
+            height: 150px;
             margin-bottom: 20px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             position: relative;
             border: 2px solid #333;
+            overflow: hidden;
         }
 
-        #img-avatar {
-            width: 100px;
-            filter: grayscale(100%);
-            transition: 0.5s;
+        #img-avatar { width: 60px; filter: grayscale(100%); transition: 0.5s; }
+
+        .pixel-map {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
         }
 
-        .controles-glitch {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+        .nodo { width: 12px; height: 12px; background: #333; border-radius: 2px; }
+        .active { background: var(--cian); box-shadow: 0 0 10px var(--cian); }
 
         .btn-accion {
-            background: #222;
-            color: var(--cian);
-            border: 1px solid var(--cian);
-            padding: 10px;
-            font-family: 'Montserrat';
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .btn-accion:hover {
             background: var(--cian);
             color: #000;
+            border: none;
+            padding: 12px 20px;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
         }
 
-        /* ANIMACIONES */
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
+        .btn-rojo { background: var(--rojo); color: white; }
 
-        .scanline {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: var(--fucsia);
-            opacity: 0.5;
-            animation: scanline 2s linear infinite;
-        }
+        @keyframes scanline { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+        .scanline { position: absolute; width: 100%; height: 2px; background: var(--fucsia); opacity: 0.5; animation: scanline 2s linear infinite; }
     </style>
 </head>
 <body>
@@ -140,51 +136,63 @@
     <div class="container">
         <a href="../index.html" class="back-btn" style="color: var(--cian); text-decoration: none; border: 1px solid var(--cian); padding: 5px 15px; border-radius: 5px; font-family: 'Montserrat';">← VOLVER</a>
         
-        <h1>⚠️ PELIGRO: <br>TU FOTO YA NO ES TUYA 🔓</h1>
+        <h1>📸 LA HUELLA ETERNA: <br>LO QUE SUBES, SE QUEDA ♾️</h1>
         
-        <div class="destacado-rojo">
-            Imagina que dejas una copia de las llaves de tu casa pegada en una farola de la calle. Eso es, básicamente, subir una foto sin control a la red. No solo se queda ahí para siempre, sino que <b>cualquier persona en el mundo</b> puede cogerla y usarla para lo que quiera.
+        <div class="destacado">
+            ¿Crees que al darle a "Eliminar para todos" la foto se esfuma? <b>¡ERROR!</b> ❌ En Internet, "borrar" es solo una ilusión para que te quedes tranquilo. Una vez que pulsas enviar, has perdido el control de esa imagen para siempre.
         </div>
 
-        <h2>🕵️ 1. EL "MERCADILLO" DE TUS DATOS</h2>
-        <p>Hay gente que se dedica a coleccionar fotos ajenas para fines que no te gustarían nada:</p>
+        <h2>🕵️ 1. EL VIAJE SIN RETORNO DE TUS DATOS</h2>
+        <p>Tu foto se rompe en mil <b>PAQUETES 📦</b> que viajan a la velocidad de la luz. Aunque la borres de tu móvil, esos trozos ya han dejado rastro en:</p>
         
-        <p>👤 <b>Suplantación de identidad:</b> Alguien en la otra punta del mundo puede usar tu cara para crear un perfil falso en Instagram o TikTok y engañar a otras personas. ¡Están viviendo una vida falsa usando tus fotos!</p>
+        <p>🌍 <b>Servidores Mundiales:</b> Tus datos pueden haber pasado por <b>Groenlandia, Singapur o EE.UU.</b> antes de llegar a su destino. Cada nodo de la red puede guardar una copia "caché" de seguridad.</p>
         
-        <p>🌍 <b>Acceso Global:</b> No importa si vives en un pueblo pequeño; una vez que la foto está en la red, un usuario en Japón, Brasil o Rusia puede descargarla en un segundo. <b>Internet no tiene fronteras.</b></p>
+        <p>👻 <b>El Efecto Zombie:</b> Las plataformas no borran los archivos al instante; a veces solo quitan la etiqueta. Tu foto sigue en un disco duro en algún edificio gigante, esperando a ser sobreescrita... o recuperada por alguien con conocimientos.</p>
 
         <div class="separador"></div>
 
-        <h2>🎭 2. MANIPULACIÓN: EL "PHOTOSHOP" MALVADO</h2>
-        <p>Hoy en día, con la Inteligencia Artificial y las herramientas de edición, tu foto es como una pieza de plastilina:</p>
+        <h2>🎭 2. MANIPULACIÓN Y ACCESO ILÍCITO</h2>
+        <p>Aquí viene lo peligroso: cuando la imagen sale de tu control, se convierte en propiedad del mundo:</p>
 
-        <p>🖼️ <b>Deepfakes y Montajes:</b> Pueden recortar tu cara y ponerla en situaciones ridículas, peligrosas o ilegales. Lo que empezó como una foto inocente puede acabar convertida en un "meme" ofensivo o algo mucho peor.</p>
+        <p>👤 <b>Suplantación de Identidad:</b> Alguien puede usar tu cara para crear perfiles falsos y estafar o acosar a otros. Internet no tiene fronteras y un extraño en la otra punta del planeta puede descargar tu foto en un clic.</p>
+        
+        <p>🤖 <b>Deepfakes y Photoshop:</b> Con la IA actual, cualquiera puede recortar tu cara y ponerla en vídeos o situaciones humillantes. Tu foto es plastilina en manos de desconocidos.</p>
 
-        <p>📱 <b>Uso Ilícito:</b> Tus fotos pueden terminar en anuncios de productos que tú no usas, o incluso en páginas web de dudosa reputación. Una vez que la imagen "vuela", ya no puedes pedir que te la devuelvan.</p>
-
-        <div class="quote" style="border-left: 4px solid var(--rojo); background: rgba(255,0,0,0.05);">
-            <b>🚨 ¡OJO AL DATO!</b><br>
-            Compartir una foto privada de otra persona sin su permiso es un <b>DELITO</b>. No solo es que la imagen no desaparezca, es que las consecuencias legales también pueden acompañarte de por vida.
+        <div class="alerta-box">
+            <h3 style="margin-top:0; color: var(--rojo);">⚖️ EL MEME NO TE LIBRA DEL DELITO</h3>
+            <p>Hacer un meme de un compañero y pasarlo "por risas" es un <b>delito contra la propia imagen</b>. Aunque lo borres del grupo de WhatsApp a los 10 segundos, el daño (y la prueba del delito) ya está en la red.</p>
         </div>
 
+        <h2>🚫 3. LA FALSA SEGURIDAD DE LO "TEMPORAL"</h2>
+        <p>No te fíes de los mensajes que se borran solos. Son una trampa de confianza:</p>
+
+        <p>📸 <b>Captura de pantalla:</b> El truco más viejo del mundo. Un segundo basta para que tu mensaje "temporal" sea eterno en la galería de otra persona.</p>
+        
+        <p>🔄 <b>Reenvío Inmediato:</b> Si alguien reenvía tu foto antes de que la borres, ya no hay marcha atrás. Has pasado de tener un secreto a tener una publicación global.</p>
+
         <div id="contenedor-multimedia">
-            <h3 style="color: var(--cian); margin-top: 0;">🛠️ SIMULADOR DE MANIPULACIÓN</h3>
-            <p style="font-size: 0.9rem; color: #ccc;">Mira lo que puede pasarle a una imagen en manos equivocadas en solo 3 clics:</p>
+            <h3 style="color: var(--cian); margin-top: 0;">🛠️ CONSOLA DE RASTRO DIGITAL</h3>
             
             <div class="pantalla-fake">
                 <div class="scanline"></div>
-                <img id="img-avatar" src="https://cdn-icons-png.flaticon.com/512/924/924874.png" alt="Avatar">
-                <p id="msg-alerta" style="position: absolute; bottom: 10px; color: var(--fucsia); font-family: 'Courier New'; font-weight: bold; font-size: 0.7rem;"></p>
+                <img id="img-avatar" src="https://cdn-icons-png.flaticon.com/512/924/924874.png" alt="Tu Foto">
+                <p id="msg-alerta" style="position: absolute; bottom: 5px; color: var(--fucsia); font-family: 'Courier New'; font-size: 0.6rem;"></p>
             </div>
 
-            <div class="controles-glitch">
-                <button class="btn-accion" onclick="manipular('pixel')">👾 PIXELAR / ANONIMIZAR</button>
-                <button class="btn-accion" onclick="manipular('clonar')">👥 CLONAR IDENTIDAD</button>
-                <button class="btn-accion" onclick="manipular('fake')">🎭 CAMBIAR CONTEXTO</button>
-                <button class="btn-accion" onclick="manipular('leak')">🌐 SIMULAR DIFUSIÓN</button>
+            <div class="pixel-map">
+                <div class="nodo" id="n1"></div><div class="nodo" id="n2"></div><div class="nodo" id="n3"></div>
+                <div class="nodo" id="n4"></div><div class="nodo" id="n5"></div><div class="nodo" id="n6"></div>
             </div>
+
+            <button class="btn-accion btn-rojo" id="btn-del" onclick="procesoFinal()">🗑️ ELIMINAR FOTO</button>
+            <button class="btn-accion" onclick="manipular()">🎭 SIMULAR MANIPULACIÓN</button>
             
-            <p id="txt-log" style="margin-top: 15px; font-family: 'Courier New'; color: #0f0; font-size: 0.8rem;">Esperando comandos...</p>
+            <p id="txt-log" style="margin-top: 15px; font-family: 'Courier New'; color: #0f0; font-size: 0.75rem;">SISTEMA: Imagen detectada en la red.</p>
+        </div>
+
+        <div class="quote">
+            <b>💡 EL CONSEJO "ojo al clic" 👁️🖱️</b><br>
+            Tu reputación digital es como un tatuaje que no se puede borrar con láser. Si no quieres que tu abuela, tu profesor o tu futuro jefe vean esa foto dentro de 10 años... <span class="warning">NO LA SUBAS</span>.
         </div>
 
         <p style="text-align: center; margin-top: 60px;">
@@ -193,27 +201,32 @@
     </div>
 
     <script>
-        function manipular(tipo) {
+        function manipular() {
             const img = document.getElementById('img-avatar');
             const log = document.getElementById('txt-log');
-            const alerta = document.getElementById('msg-alerta');
+            img.style.filter = "invert(100%) hue-rotate(180deg) blur(2px)";
+            log.innerText = "> IA detectada: Alterando rasgos y contexto...";
+        }
+
+        function procesoFinal() {
+            const log = document.getElementById('txt-log');
+            const btn = document.getElementById('btn-del');
+            const nodos = document.querySelectorAll('.nodo');
             
-            if(tipo === 'pixel') {
-                img.style.filter = "blur(10px) contrast(200%)";
-                log.innerText = "> Extrayendo rasgos faciales...";
-            } else if(tipo === 'clonar') {
-                img.style.transform = "scaleX(-1)";
-                img.style.filter = "sepia(100%) hue-rotate(90deg)";
-                log.innerText = "> Creando 50 perfiles falsos en redes sociales...";
-            } else if(tipo === 'fake') {
-                img.style.filter = "invert(100%)";
-                log.innerText = "> Insertando rostro en video no autorizado...";
-            } else if(tipo === 'leak') {
-                img.style.animation = "vibrarFinal 0.1s infinite";
-                log.innerText = "> COMPARTIENDO EN 1.200 SERVIDORES EXTERNOS...";
-                alerta.innerText = "¡AVISO: IMAGEN FUERA DE CONTROL!";
-                setTimeout(() => { img.style.animation = "none"; }, 1000);
-            }
+            btn.disabled = true;
+            log.innerText = "> Borrando archivo local...";
+            
+            setTimeout(() => {
+                log.innerText = "> ¡ALERTA! Réplicas activas en servidores externos.";
+                nodos[0].classList.add('active');
+                nodos[3].classList.add('active');
+            }, 1000);
+
+            setTimeout(() => {
+                log.innerHTML = "<span style='color:var(--rojo)'>DATOS FUERA DE CONTROL: La huella digital persiste en 6 nodos.</span>";
+                nodos.forEach(n => n.classList.add('active'));
+                document.getElementById('msg-alerta').innerText = "IDENTIDAD COMPROMETIDA GLOBALMENTE";
+            }, 2500);
         }
     </script>
 </body>
