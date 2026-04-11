@@ -3,136 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quién Soy | AHORA - Bienestar Digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Lora:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <title>Misión: Formación | Ojo al Clic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Orbitron:wght@400;900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* REPLICANDO TUS VARIABLES EXACTAS */
         :root {
-            --primary: #7b68ee;
-            --secondary: #e91e63;
-            --dark: #0f172a;
-            --slate: #475569;
-            --bg: #f8fafc;
-            --white: #ffffff;
+            --fondo: #050a14;
+            --cian: #00ffff;
+            --fucsia: #ff00ff;
+            --amarillo: #fbff00;
+            --blanco: #ffffff;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--dark);
+            background-color: var(--fondo);
+            color: var(--blanco);
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
-            line-height: 1.6;
+            text-align: center;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            padding: 30px 0;
+        /* Reutilizando tu navegación */
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 5%;
+            background: rgba(5, 10, 20, 0.95);
+            border-bottom: 3px solid var(--cian);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
         }
 
-        .logo {
-            font-family: 'Lora', serif;
-            font-size: 1.8rem;
-            color: var(--primary);
+        .nav-links a {
+            color: var(--blanco);
             text-decoration: none;
-            font-style: italic;
-            font-weight: 800;
+            margin-left: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px var(--cian);
         }
 
-        /* ESTILO PRODUCT GRID PARA EL CONTENIDO */
-        .content-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            padding: 80px 0;
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin: 50px 0;
+            text-shadow: 4px 4px var(--fucsia);
+            -webkit-text-stroke: 1px var(--cian);
         }
 
-        @media (max-width: 850px) {
-            .content-section { grid-template-columns: 1fr; text-align: center; }
+        .mision-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .card-estetica {
-            background: var(--white);
-            border-radius: 30px;
+        .card-mision {
+            background: #0d1a30;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            border: 1px solid #f1f5f9;
+            border-radius: 20px;
+            border: 3px solid var(--fucsia);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+            text-align: left;
         }
 
-        h1, h2 { font-family: 'Lora', serif; font-style: italic; }
-        
-        /* TU BOTÓN NEÓN VIOLETA */
-        .btn-neon {
+        .tag-mision {
+            color: var(--amarillo);
+            font-family: 'Orbitron';
+            font-weight: 900;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        h3 { font-family: 'Orbitron'; color: var(--cian); font-size: 1.8rem; margin-top: 30px; }
+
+        .btn-neon-contacto {
             display: inline-block;
-            padding: 18px 30px;
-            border-radius: 12px;
-            font-weight: 700;
+            margin-top: 30px;
+            padding: 20px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
             text-decoration: none;
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 10px 20px rgba(123, 104, 238, 0.3);
-            transition: all 0.3s ease;
-            margin-top: 20px;
+            color: var(--fondo);
+            background: var(--amarillo);
+            font-weight: 900;
+            border-radius: 5px;
+            box-shadow: 0 0 15px var(--amarillo);
+            transition: 0.3s;
         }
 
-        .btn-neon:hover { transform: translateY(-3px); opacity: 0.95; }
+        .btn-neon-contacto:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--amarillo);
+        }
 
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 50px 0;
-            text-align: center;
-            margin-top: 80px;
+        .footer-mini {
+            margin-top: 50px;
+            padding: 30px;
+            opacity: 0.6;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <a href="index.html" class="logo">AHORA</a>
-        </header>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">← VOLVER AL INICIO</a>
+        </div>
+    </nav>
 
-        <section class="content-section">
-            <div class="info-side">
-                <span style="color:var(--primary); font-weight:800; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px;">Sobre la autora</span>
-                <h1 style="font-size: 3rem; margin: 10px 0;">Susana B. Fuentes</h1>
-                <p style="font-size: 1.1rem; color: var(--slate);">Desarrolladora y divulgadora enfocada en el bienestar digital. Ayudo a personas y organizaciones a silenciar el ruido mental mediante formación y herramientas tecnológicas.</p>
-                
-                <div style="margin-top: 30px;">
-                    <h3 style="color: var(--dark); margin-bottom: 15px;">Servicios de Formación</h3>
-                    <p>• Charlas sobre alfabetización digital crítica.<br>
-                    • Talleres de seguridad y privacidad en internet.<br>
-                    • Consultoría en bienestar mental y tecnología.</p>
-                </div>
-            </div>
+    <div class="mision-container">
+        <h1 class="section-title">QUIÉN SOY / FORMACIÓN</h1>
 
-            <div class="card-estetica">
-                <h2 style="color: var(--primary);">Contacto & Charlas</h2>
-                <p>Si te interesa organizar una formación o tienes dudas sobre cómo mejorar tu relación con la tecnología, completa el formulario oficial:</p>
-                
-                <a href="TU_ENLACE_AQUI" class="btn-neon">Solicitar Información</a>
+        <div class="card-mision">
+            <span class="tag-mision">[ ARCHIVO: SOBRE MÍ ]</span>
+            <p style="font-size: 1.2rem; line-height: 1.8;">
+                Soy el responsable de <strong>Ojo al Clic</strong>. Mi objetivo es hackear la brecha digital y darte las herramientas para que navegues por la red sin que te quemen los tiburones del iceberg digital. 👁️🖱️
+            </p>
 
-                <p style="font-size: 0.8rem; margin-top: 25px; color: var(--slate); border-top: 1px solid #eee; padding-top: 15px;">
-                    Los datos recogidos son informativos para resolver tus dudas. 
-                    <a href="privacidad.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Ver Privacidad</a>
-                </p>
-            </div>
-        </section>
+            <span class="tag-mision">[ OBJETIVOS DE FORMACIÓN ]</span>
+            <ul style="list-style: none; padding: 0; line-height: 2;">
+                <li>⚡ <strong>ALFABETIZACIÓN:</strong> Domina el hardware y software básico.</li>
+                <li>🛡️ <strong>SEGURIDAD:</strong> Protege tu huella eterna y evita estafas.</li>
+                <li>🧠 <strong>CRÍTICA:</strong> Aprende a distinguir la realidad del glitch informativo.</li>
+            </ul>
+
+            <h3>¿NECESITAS UNA CHARLA O TALLER?</h3>
+            <p>Si quieres llevar esta misión a tu centro, asociación o empresa, solicita información oficial aquí:</p>
+            
+            <a href="TU_LINK_DE_GOOGLE_FORMS" target="_blank" class="btn-neon-contacto">SOLICITAR ACCESO AL FORMULARIO</a>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem;">
+                <a href="privacidad.html" style="color: var(--fucsia); text-decoration: none;">Ver Protocolo de Privacidad</a>
+            </p>
+        </div>
     </div>
 
-    <footer>
-        <p>© 2026 AHORA - Creado por Susana B. Fuentes</p>
-    </footer>
+    <div class="footer-mini">
+        <p>© 2026 Ojo al Clic - Transmitiendo desde la red segura</p>
+    </div>
 
 </body>
 </html>
