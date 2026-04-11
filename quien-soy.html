@@ -3,106 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quién Soy - Ojo al Clic</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quién Soy | AHORA - Bienestar Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Lora:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <style>
-        .form-content {
-            padding: 20px;
-            text-align: left;
+        /* REPLICANDO TUS VARIABLES EXACTAS */
+        :root {
+            --primary: #7b68ee;
+            --secondary: #e91e63;
+            --dark: #0f172a;
+            --slate: #475569;
+            --bg: #f8fafc;
+            --white: #ffffff;
         }
-        .form-content h3 {
-            margin-top: 25px;
-            color: #0056b3; /* Tu color azul */
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            margin: 0;
+            line-height: 1.6;
         }
-        .form-content ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .form-content li {
-            margin-bottom: 10px;
+
+        header {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
         }
-        .boton-contacto-container {
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 30px;
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-style: italic;
+            font-weight: 800;
         }
-        /* Botón estilo Ojo al Clic */
-        .btn-google {
+
+        /* ESTILO PRODUCT GRID PARA EL CONTENIDO */
+        .content-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        @media (max-width: 850px) {
+            .content-section { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        .card-estetica {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+        }
+
+        h1, h2 { font-family: 'Lora', serif; font-style: italic; }
+        
+        /* TU BOTÓN NEÓN VIOLETA */
+        .btn-neon {
             display: inline-block;
-            background-color: #0056b3; /* Tu azul */
-            color: white !important;
-            padding: 15px 30px;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            border: none;
-            font-size: 1.1em;
-            cursor: pointer;
-        }
-        .btn-google:hover {
-            background-color: #004494; /* Un azul un poco más oscuro al pasar el ratón */
-            text-decoration: none;
-        }
-        .nota-privacidad-corta {
-            font-size: 0.9em;
-            color: #666;
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(123, 104, 238, 0.3);
+            transition: all 0.3s ease;
             margin-top: 20px;
+        }
+
+        .btn-neon:hover { transform: translateY(-3px); opacity: 0.95; }
+
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 50px 0;
             text-align: center;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
+            margin-top: 80px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Ojo al Clic</h1>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="index.html#articulos">Artículos</a>
-        <a href="index.html#consejos">Consejos</a>
-        <a href="index.html#recursos">Recursos</a>
-        <a href="quien-soy.html" class="active">Quién Soy / Formación</a>
-    </nav>
-</header>
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">AHORA</a>
+        </header>
 
-<main class="container">
-    <section class="card">
-        <div class="form-content">
-            <h2>Sobre mí y Formación</h2>
-            
-            <p>¡Hola! Soy el responsable detrás de <strong>Ojo al Clic</strong>. Mi misión es acercar la tecnología a todas las personas, eliminando barreras y fomentando un uso seguro, crítico y responsable de la red.</p>
-            
-            <p>Creo firmemente en la necesidad de una alfabetización digital real para evitar la exclusión y los riesgos innecesarios en internet.</p>
-
-            <h3>Charlas y Talleres</h3>
-            <p>Ofrezco formaciones personalizadas para asociaciones, centros educativos, centros de mayores o empresas. Mis áreas de especialización son:</p>
-            <ul>
-                <li><strong>Alfabetización Digital Básica:</strong> Pierde el miedo al ordenador y al móvil.</li>
-                <li><strong>Seguridad y Privacidad en Internet:</strong> Protege tus datos, gestiona contraseñas y evita estafas (phishing, etc.).</li>
-                <li><strong>Uso Crítico de la Información:</strong> Cómo identificar noticias falsas (fake news) y navegar de forma segura.</li>
-                <li><strong>Identidad Digital y Redes Sociales:</strong> Gestión responsable de la imagen online.</li>
-            </ul>
-
-            <h3>¿Te interesa organizar una formación?</h3>
-            <p>Si quieres información sobre disponibilidad, temas específicos o presupuestos, por favor, utiliza el formulario oficial de contacto alojado en Google Forms. Estaré encantado de atender tu propuesta.</p>
-            
-            <div class="boton-contacto-container">
-                <a href="AQUÍ_VA_TU_LINK_DE_GOOGLE_FORMS" target="_blank" class="btn-google">Acceder al Formulario de Contacto</a>
+        <section class="content-section">
+            <div class="info-side">
+                <span style="color:var(--primary); font-weight:800; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px;">Sobre la autora</span>
+                <h1 style="font-size: 3rem; margin: 10px 0;">Susana B. Fuentes</h1>
+                <p style="font-size: 1.1rem; color: var(--slate);">Desarrolladora y divulgadora enfocada en el bienestar digital. Ayudo a personas y organizaciones a silenciar el ruido mental mediante formación y herramientas tecnológicas.</p>
+                
+                <div style="margin-top: 30px;">
+                    <h3 style="color: var(--dark); margin-bottom: 15px;">Servicios de Formación</h3>
+                    <p>• Charlas sobre alfabetización digital crítica.<br>
+                    • Talleres de seguridad y privacidad en internet.<br>
+                    • Consultoría en bienestar mental y tecnología.</p>
+                </div>
             </div>
 
-            <div class="nota-privacidad-corta">
-                <p>Aviso: Los datos recogidos en el formulario son meramente informativos para resolver dudas o consultar sobre servicios. <a href="privacidad.html">Ver Política de Privacidad</a>.</p>
-            </div>
-        </div>
-    </section>
-</main>
+            <div class="card-estetica">
+                <h2 style="color: var(--primary);">Contacto & Charlas</h2>
+                <p>Si te interesa organizar una formación o tienes dudas sobre cómo mejorar tu relación con la tecnología, completa el formulario oficial:</p>
+                
+                <a href="TU_ENLACE_AQUI" class="btn-neon">Solicitar Información</a>
 
-<footer>
-    <p>&copy; 2026 Ojo al Clic - Alfabetización y Seguridad Digital</p>
-</footer>
+                <p style="font-size: 0.8rem; margin-top: 25px; color: var(--slate); border-top: 1px solid #eee; padding-top: 15px;">
+                    Los datos recogidos son informativos para resolver tus dudas. 
+                    <a href="privacidad.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Ver Privacidad</a>
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2026 AHORA - Creado por Susana B. Fuentes</p>
+    </footer>
 
 </body>
 </html>
