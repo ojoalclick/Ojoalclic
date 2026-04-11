@@ -132,7 +132,7 @@
             transform: scale(1.05);
         }
 
-        /* --- SECCIÓN HIMNO --- */
+        /* --- SECCIÓN HIMNO Y BAILARÍN --- */
         #himno { 
             padding: 120px 10%; 
             background: linear-gradient(180deg, #080f1d 0%, #1a0a2e 100%);
@@ -147,6 +147,7 @@
             display: inline-block;
             box-shadow: 0 0 25px rgba(255, 0, 255, 0.2);
             max-width: 90%;
+            width: 100%;
         }
 
         audio { 
@@ -154,6 +155,37 @@
             width: 100%; 
             max-width: 320px;
             margin: 20px 0;
+        }
+
+        /* BAILARÍN DE CÓDIGO (NUEVO) */
+        .dj-dancer {
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            width: 100%;
+            height: 80px;
+            margin: 0 auto 20px auto;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .dj-bar {
+            width: 15px;
+            height: 15px;
+            background: var(--cian);
+            box-shadow: 0 0 15px var(--cian);
+            border-radius: 4px;
+            animation: danceAnim 0.6s infinite ease-in-out;
+            animation-play-state: paused;
+        }
+
+        .dj-bar:nth-child(2n) { background: var(--fucsia); box-shadow: 0 0 15px var(--fucsia); animation-duration: 0.8s; }
+        .dj-bar:nth-child(3n) { background: var(--amarillo); box-shadow: 0 0 15px var(--amarillo); animation-duration: 0.5s; }
+
+        @keyframes danceAnim {
+            0%, 100% { height: 15px; }
+            50% { height: 60px; }
         }
 
         /* --- SECCIÓN RRSS --- */
@@ -174,72 +206,14 @@
 
         /* --- RESPONSIVE / MÓVIL --- */
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 15px 2%;
-            }
+            nav { flex-direction: column; padding: 15px 2%; }
             .nav-logo { margin-bottom: 15px; }
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-            .nav-links a {
-                margin: 5px;
-                font-size: 0.85rem;
-                letter-spacing: 1px;
-            }
-            #articulos, #himno, #rrss {
-                padding: 60px 5%;
-            }
-            .btn-social {
-                width: 100%;
-                padding: 20px 0;
-                box-sizing: border-box;
-            }
-            .section-title {
-                text-shadow: 3px 3px var(--fucsia);
-                -webkit-text-stroke: 1px var(--cian);
-            }
-     /* BAILARÍN DE CÓDIGO CORREGIDO */
-.dj-dancer {
-    display: none; /* Se activará por JS */
-    justify-content: center;
-    align-items: flex-end;
-    width: 100%;
-    height: 80px; /* Un poco más alto para que luzca */
-    margin: 20px auto;
-    gap: 8px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.dj-bar {
-    width: 15px;
-    height: 15px;
-    background: var(--cian);
-    box-shadow: 0 0 15px var(--cian);
-    border-radius: 4px;
-    /* Quitamos la animación del CSS base para que solo actúe cuando el JS lo diga */
-}
-
-/* Colores neón alternos */
-.dj-bar:nth-child(2n) {
-    background: var(--fucsia);
-    box-shadow: 0 0 15px var(--fucsia);
-}
-
-.dj-bar:nth-child(3n) {
-    background: var(--amarillo);
-    box-shadow: 0 0 15px var(--amarillo);
-}
-
-/* Animación definida pero sin aplicar de inicio */
-@keyframes danceAnim {
-    0% { height: 15px; transform: scaleY(1); }
-    50% { height: 60px; transform: scaleY(1.2); }
-    100% { height: 20px; transform: scaleY(1); }
-}
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .nav-links a { margin: 5px; font-size: 0.85rem; letter-spacing: 1px; }
+            #articulos, #himno, #rrss, #descargas { padding: 60px 5%; }
+            .btn-social { width: 100%; padding: 20px 0; box-sizing: border-box; }
+            .section-title { text-shadow: 3px 3px var(--fucsia); -webkit-text-stroke: 1px var(--cian); }
+        }
     </style>
 </head>
 <body>
@@ -251,11 +225,12 @@
         <div class="nav-links">
             <a href="#inicio">INICIO</a>
             <a href="#articulos">ARTÍCULOS</a>
-            <a href="#descargas">DESCARGAS</a> <a href="#himno">HIMNO</a>
+            <a href="#descargas">DESCARGAS</a> 
+            <a href="#himno">HIMNO</a>
             <a href="#rrss">RRSS</a>
             <a href="recreativo.html" class="btn-recreativo">🕹️ RECREATIVO</a>
-            <a href="quien-soy.html">Quién Soy / Formación</a>
-</div>
+            <a href="quien-soy.html">QUIÉN SOY</a>
+        </div>
     </nav>
 
     <section class="hero" id="inicio">
@@ -264,104 +239,82 @@
         <p style="font-size: clamp(1.2rem, 5vw, 1.8rem); color: var(--cian); font-weight: bold; text-shadow: 0 0 10px var(--cian);">¡NAVEGA SIN QUEMARTE! 🔥</p>
     </section>
 
-    <section id="articulos">
+<section id="articulos">
         <h2 class="section-title">ARTÍCULOS TOP</h2>
         <div class="grid-articulos">
             <div class="card-blog">
                 <span style="color: var(--amarillo); font-family: 'Orbitron'; font-weight: 900;">[ MISIÓN 01 ]</span>
                 <h3 style="color: var(--cian); font-size: 1.8rem;">🌐 EL ICEBERG DIGITAL</h3>
-                <p style="font-size: 1.1rem; line-height: 1.6;">¿Crees que internet es solo TikTok? Descubre la bestia de cables y tiburones que hay bajo tus pies.</p>
+                <p style="font-size: 1.1rem; line-height: 1.6;">¿Crees que internet es solo TikTok? Descubre la bestia de cables y tiburones que hay bajo tus pies en las profundidades de la red. No todo es lo que parece en la superficie.</p>
                 <a href="articulos/el-iceberg.html" style="color: var(--fucsia); text-decoration: none; font-weight: 900; font-size: 1.2rem;">LEER COMPLETO →</a>
             </div>
-        <div class="card-blog">
+
+            <div class="card-blog">
                 <span style="color: var(--fucsia); font-family: 'Orbitron'; font-weight: 900;">[ MISIÓN 02 ]</span>
                 <h3 style="color: var(--amarillo); font-size: 1.8rem;">⚡ MANUAL DEL SUPERPODER</h3>
-                <p style="font-size: 1.1rem; line-height: 1.6;">¿Sabías que Internet se creó para sobrevivir a una bomba? Pasa de ser un espectador a un creador real.</p>
+                <p style="font-size: 1.1rem; line-height: 1.6;">¿Sabías que Internet se creó para sobrevivir a una bomba? Pasa de ser un simple espectador a un creador real con estas claves tácticas para dominar el entorno digital.</p>
                 <a href="articulos/manual_superpoder.html" style="color: var(--cian); text-decoration: none; font-weight: 900; font-size: 1.2rem;">LEER COMPLETO →</a>
             </div>
-        <div class="card-blog">
+
+            <div class="card-blog">
                 <span style="color: var(--amarillo); font-family: 'Orbitron', sans-serif; font-weight: 900;">[ MISIÓN 03 ]</span>
                 <h3 style="color: var(--fucsia); font-size: 1.8rem; text-shadow: 2px 2px var(--cian);">📸 LA HUELLA ETERNA</h3>
-                <p style="font-size: 1.1rem; line-height: 1.6;">¿Borrar una foto sirve de algo? Spoiler: No. Descubre cómo tus imágenes se vuelven "zombies" que cualquiera puede manipular en el mundo.</p>
+                <p style="font-size: 1.1rem; line-height: 1.6;">¿Borrar una foto sirve de algo? Spoiler: No. Descubre cómo tus imágenes se vuelven "zombies" que cualquiera puede manipular y por qué tu rastro es para siempre.</p>
                 <a href="articulos/tu_foto.html" style="color: var(--cian); text-decoration: none; font-weight: 900; font-size: 1.2rem; border-bottom: 2px solid var(--fucsia); padding-bottom: 2px;">LEER COMPLETO →</a>
             </div>    
         </div>
     </section>
+
     <section id="descargas" style="padding: 100px 10%; background: #050a14; text-align: center;">
         <h2 class="section-title">EQUÍPATE</h2>
         <p style="color: var(--cian); font-family: 'Orbitron'; margin-bottom: 50px; font-size: 1.2rem;">DESCARGA LAS INFOGRAFÍAS Y PÉGALAS POR TODA LA RED</p>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-            
             <div style="border: 2px dashed var(--cian); padding: 20px; border-radius: 15px; background: rgba(0,255,255,0.05);">
                 <h4 style="color: var(--amarillo); font-family: 'Orbitron'; margin-top: 0;">INFOGRAFÍA 01</h4>
-                <p style="font-size: 0.9rem;">Todo sobre el Iceberg Digital y los tiburones de la red.</p>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Todo lo que necesitas saber sobre el Iceberg Digital y los tiburones que acechan en la red.</p>
                 <a href="descargas/info_iceberg.pdf" download style="display: inline-block; padding: 10px 20px; background: var(--cian); color: #000; text-decoration: none; font-weight: 900; border-radius: 5px; font-family: 'Montserrat';">BAJAR PDF ↓</a>
             </div>
 
             <div style="border: 2px dashed var(--fucsia); padding: 20px; border-radius: 15px; background: rgba(255,0,255,0.05);">
                 <h4 style="color: var(--amarillo); font-family: 'Orbitron'; margin-top: 0;">INFOGRAFÍA 02</h4>
-                <p style="font-size: 0.9rem;">Guía de Superpoderes: de espectador a creador pro.</p>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Tu Guía de Superpoderes: la hoja de ruta para pasar de ser un espectador a un creador profesional.</p>
                 <a href="descargas/info_superpoder.pdf" download style="display: inline-block; padding: 10px 20px; background: var(--fucsia); color: #fff; text-decoration: none; font-weight: 900; border-radius: 5px; font-family: 'Montserrat';">BAJAR PDF ↓</a>
             </div>
 
             <div style="border: 2px dashed var(--amarillo); padding: 20px; border-radius: 15px; background: rgba(251,255,0,0.05);">
                 <h4 style="color: var(--amarillo); font-family: 'Orbitron'; margin-top: 0;">INFOGRAFÍA 03</h4>
-                <p style="font-size: 0.9rem;">La Huella Eterna: El rastro que nunca se borra.</p>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">La Huella Eterna: Un resumen visual del rastro digital que nunca se borra y cómo protegerte.</p>
                 <a href="descargas/info_huella.pdf" download style="display: inline-block; padding: 10px 20px; background: var(--amarillo); color: #000; text-decoration: none; font-weight: 900; border-radius: 5px; font-family: 'Montserrat';">BAJAR PDF ↓</a>
             </div>
-
         </div>
 
         <div style="margin-top: 50px; padding: 20px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;">
-            <p style="font-style: italic; opacity: 0.8;">"Imprímelas, pégalas en tu cuarto o compártelas en tus historias. La información es poder, ¡pásalo!" 👁️🖱️</p>
+            <p style="font-style: italic; opacity: 0.8; font-size: 1.1rem;">"Imprímelas, pégalas en tu cuarto o compártelas en tus historias de Instagram. La información es poder, ¡pásalo a tus amigos!" 👁️🖱️</p>
         </div>
     </section>
-   <section id="himno">
-    <h2 class="section-title">NUESTRO HIMNO</h2>
-    <div class="audio-player">
-        <p style="margin-bottom: 25px; font-family: 'Orbitron'; font-size: 1.2rem; color: var(--cian); text-shadow: 0 0 10px var(--cian);">🎵 SUBE EL VOLUMEN AL POP 🎵</p>
-        
-        <div id="code-dancer" class="dj-dancer">
-            <div class="dj-bar" style="animation: danceAnim 0.6s infinite 0.1s ease-in-out paused;"></div>
-            <div class="dj-bar" style="animation: danceAnim 0.8s infinite 0.3s ease-in-out paused;"></div>
-            <div class="dj-bar" style="animation: danceAnim 0.5s infinite 0.5s ease-in-out paused;"></div>
-            <div class="dj-bar" style="animation: danceAnim 0.9s infinite 0.2s ease-in-out paused;"></div>
-            <div class="dj-bar" style="animation: danceAnim 0.7s infinite 0.4s ease-in-out paused;"></div>
+
+<section id="himno">
+        <h2 class="section-title">NUESTRO HIMNO</h2>
+        <div class="audio-player">
+            <p style="margin-bottom: 25px; font-family: 'Orbitron'; font-size: 1.2rem; color: var(--cian); text-shadow: 0 0 10px var(--cian);">🎵 SUBE EL VOLUMEN AL POP 🎵</p>
+            
+            <div id="code-dancer" class="dj-dancer">
+                <div class="dj-bar"></div>
+                <div class="dj-bar"></div>
+                <div class="dj-bar"></div>
+                <div class="dj-bar"></div>
+                <div class="dj-bar"></div>
+            </div>
+            
+            <audio controls id="himno-audio">
+                <source src="https://github.com/ojoalclic/Ojoalclic/releases/download/himno/himno.mp3" type="audio/mpeg">
+                Tu navegador no soporta el audio.
+            </audio>
+            
+            <p style="margin-top: 25px; font-size: 0.9rem; opacity: 0.8; font-style: italic;">"Click, click, la red te espera..."</p>
         </div>
-        
-        <audio controls id="himno-audio">
-            <source src="https://github.com/ojoalclic/Ojoalclic/releases/download/himno/himno.mp3" type="audio/mpeg">
-            Tu navegador no soporta el audio.
-        </audio>
-        
-        <p style="margin-top: 25px; font-size: 0.9rem; opacity: 0.8; font-style: italic;">"Click, click, la red te espera..."</p>
-    </div>
-
-    <script>
-        const audio = document.getElementById('himno-audio');
-        const dancer = document.getElementById('code-dancer');
-        const bars = document.querySelectorAll('.dj-bar');
-
-        audio.onplay = () => {
-            dancer.style.display = 'flex';
-            setTimeout(() => { dancer.style.opacity = '1'; }, 50);
-            bars.forEach(bar => bar.style.animationPlayState = 'running');
-        };
-
-        audio.onpause = () => {
-            dancer.style.opacity = '0';
-            setTimeout(() => { 
-                dancer.style.display = 'none'; 
-                bars.forEach(bar => bar.style.animationPlayState = 'paused');
-            }, 500);
-        };
-
-        audio.onended = () => {
-            audio.pause(); // Dispara el evento onpause automáticamente
-        };
-    </script>
-</section>
+    </section>
 
     <section id="rrss">
         <h2 class="section-title">SÍGUENOS</h2>
@@ -375,5 +328,54 @@
         <p>&copy; 2026 Ojo al Clic - Educando a la generación del futuro 👁️🖱️</p>
     </footer>
 
+    <script>
+        // LÓGICA DE INTERACCIÓN DEL BAILARÍN
+        const audioHimno = document.getElementById('himno-audio');
+        const dancerContainer = document.getElementById('code-dancer');
+        const bars = document.querySelectorAll('.dj-bar');
+
+        // Función para activar la fiesta
+        function activarBaile() {
+            // 1. Mostramos el contenedor
+            dancerContainer.style.display = 'flex';
+            setTimeout(() => {
+                dancerContainer.style.opacity = '1';
+            }, 10);
+            
+            // 2. Activamos la animación de cada barra
+            bars.forEach(bar => {
+                bar.style.animationPlayState = 'running';
+            });
+        }
+
+        // Función para parar la fiesta
+        function desactivarBaile() {
+            // 1. Ocultamos suavemente
+            dancerContainer.style.opacity = '0';
+            setTimeout(() => { 
+                if(audioHimno.paused) {
+                    dancerContainer.style.display = 'none'; 
+                }
+            }, 400);
+            
+            // 2. Pausamos la animación para ahorrar recursos
+            bars.forEach(bar => {
+                bar.style.animationPlayState = 'paused';
+            });
+        }
+
+        // EVENTOS DEL REPRODUCTOR
+        audioHimno.addEventListener('play', () => {
+            activarBaile();
+        });
+
+        audioHimno.addEventListener('pause', () => {
+            desactivarBaile();
+        });
+
+        audioHimno.addEventListener('ended', () => {
+            desactivarBaile();
+        });
+    </script>
 </body>
 </html>
