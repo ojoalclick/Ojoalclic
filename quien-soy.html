@@ -22,7 +22,7 @@
             text-align: center;
         }
 
-        /* Reutilizando tu navegación */
+        /* Navegación */
         nav {
             display: flex;
             justify-content: space-between;
@@ -76,24 +76,67 @@
 
         h3 { font-family: 'Orbitron'; color: var(--cian); font-size: 1.8rem; margin-top: 30px; }
 
-        .btn-neon-contacto {
-            display: inline-block;
+        /* --- ESTILOS DEL NUEVO FORMULARIO --- */
+        .form-container {
             margin-top: 30px;
-            padding: 20px 40px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            text-decoration: none;
-            color: var(--fondo);
-            background: var(--amarillo);
-            font-weight: 900;
-            border-radius: 5px;
-            box-shadow: 0 0 15px var(--amarillo);
-            transition: 0.3s;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--cian);
         }
 
-        .btn-neon-contacto:hover {
-            transform: scale(1.1);
+        .grupo-form {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grupo-form label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--cian);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .grupo-form input, 
+        .grupo-form select, 
+        .grupo-form textarea {
+            background: #050a14;
+            border: 1px solid var(--cian);
+            padding: 12px;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .grupo-form input:focus, 
+        .grupo-form textarea:focus {
+            border-color: var(--fucsia);
+            box-shadow: 0 0 10px var(--fucsia);
+        }
+
+        .btn-enviar-cyber {
+            width: 100%;
+            padding: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--fondo);
+            background: var(--amarillo);
+            border: none;
+            font-weight: 900;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--amarillo);
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-enviar-cyber:hover {
+            transform: scale(1.02);
             box-shadow: 0 0 30px var(--amarillo);
+            background: var(--blanco);
         }
 
         .footer-mini {
@@ -128,13 +171,44 @@
                 <li>🧠 <strong>CRÍTICA:</strong> Aprende a distinguir la realidad del glitch informativo.</li>
             </ul>
 
-            <h3>¿NECESITAS UNA CHARLA O TALLER?</h3>
-            <p>Si quieres llevar esta misión a tu centro, asociación o empresa, solicita información oficial aquí:</p>
+            <h3>¿SOLICITAR CHARLA O TALLER?</h3>
+            <p>Envía tu propuesta directamente a la central de Ojo al Clic:</p>
             
-            <a href="TU_LINK_DE_GOOGLE_FORMS" target="_blank" class="btn-neon-contacto">SOLICITAR ACCESO AL FORMULARIO</a>
+            <div class="form-container">
+                <form action="https://formspree.io/f/mzdydgdz" method="POST">
+                    
+                    <div class="grupo-form">
+                        <label>Nombre o Institución</label>
+                        <input type="text" name="nombre" placeholder="Ej. IES Tecnológico / Asociación..." required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label>Email de contacto</label>
+                        <input type="email" name="_replyto" placeholder="tu-email@servidor.com" required>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label>Tipo de Misión</label>
+                        <select name="actividad">
+                            <option value="taller">Taller Práctico</option>
+                            <option value="charla">Charla Divulgativa</option>
+                            <option value="asesoria">Asesoría de Seguridad</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label>Mensaje / Detalles del evento</label>
+                        <textarea name="mensaje" rows="4" placeholder="Cuéntame fechas aproximadas, público objetivo..." required></textarea>
+                    </div>
+
+                    <input type="text" name="_gotcha" style="display:none">
+
+                    <button type="submit" class="btn-enviar-cyber">ENVIAR SOLICITUD</button>
+                </form>
+            </div>
             
-            <p style="margin-top: 20px; font-size: 0.9rem;">
-                <a href="privacidad.html" style="color: var(--fucsia); text-decoration: none;">Ver Protocolo de Privacidad</a>
+            <p style="margin-top: 30px; font-size: 0.9rem; text-align: center;">
+                <a href="privacidad.html" style="color: var(--fucsia); text-decoration: none; font-family: 'Orbitron';">[ VER PROTOCOLO DE PRIVACIDAD ]</a>
             </p>
         </div>
     </div>
