@@ -22,7 +22,6 @@
             text-align: center;
         }
 
-        /* Navegación */
         nav {
             display: flex;
             justify-content: space-between;
@@ -74,69 +73,69 @@
             margin-bottom: 15px;
         }
 
-        h3 { font-family: 'Orbitron'; color: var(--cian); font-size: 1.8rem; margin-top: 30px; }
+        h3 { font-family: 'Orbitron'; color: var(--cian); font-size: 1.8rem; margin-top: 40px; margin-bottom: 10px; }
 
-        /* --- ESTILOS DEL NUEVO FORMULARIO --- */
-        .form-container {
-            margin-top: 30px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid var(--cian);
+        /* --- ESTILOS DEL FORMULARIO INTEGRADO --- */
+        .form-mision {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px dashed rgba(0, 255, 255, 0.3);
         }
 
-        .grupo-form {
-            margin-bottom: 20px;
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+
+        .campo-mision {
             display: flex;
             flex-direction: column;
+            margin-bottom: 15px;
         }
 
-        .grupo-form label {
+        .campo-mision label {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: var(--cian);
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            margin-bottom: 5px;
         }
 
-        .grupo-form input, 
-        .grupo-form select, 
-        .grupo-form textarea {
-            background: #050a14;
-            border: 1px solid var(--cian);
-            padding: 12px;
+        .campo-mision input, .campo-mision select, .campo-mision textarea {
+            background: rgba(5, 10, 20, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            padding: 10px;
             color: white;
+            border-radius: 5px;
             font-family: 'Open Sans', sans-serif;
-            border-radius: 4px;
-            outline: none;
         }
 
-        .grupo-form input:focus, 
-        .grupo-form textarea:focus {
-            border-color: var(--fucsia);
-            box-shadow: 0 0 10px var(--fucsia);
-        }
+        .campo-mision textarea { grid-column: span 2; }
+        @media (max-width: 600px) { .campo-mision textarea { grid-column: span 1; } }
 
         .btn-enviar-cyber {
-            width: 100%;
-            padding: 20px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--fondo);
             background: var(--amarillo);
+            color: var(--fondo);
             border: none;
+            padding: 15px;
+            font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 0 15px var(--amarillo);
+            border-radius: 5px;
+            box-shadow: 0 0 10px var(--amarillo);
             transition: 0.3s;
-            text-transform: uppercase;
+            width: 100%;
+            margin-top: 10px;
         }
 
         .btn-enviar-cyber:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px var(--amarillo);
             background: var(--blanco);
+            box-shadow: 0 0 20px var(--blanco);
+            transform: translateY(-2px);
         }
 
         .footer-mini {
@@ -171,44 +170,44 @@
                 <li>🧠 <strong>CRÍTICA:</strong> Aprende a distinguir la realidad del glitch informativo.</li>
             </ul>
 
-            <h3>¿SOLICITAR CHARLA O TALLER?</h3>
-            <p>Envía tu propuesta directamente a la central de Ojo al Clic:</p>
+            <h3>¿NECESITAS UNA CHARLA O TALLER?</h3>
+            <p>Si quieres llevar esta misión a tu centro, asociación o empresa, solicita información oficial aquí mismo:</p>
             
-            <div class="form-container">
-                <form action="https://formspree.io/f/mzdydgdz" method="POST">
-                    
-                    <div class="grupo-form">
-                        <label>Nombre o Institución</label>
-                        <input type="text" name="nombre" placeholder="Ej. IES Tecnológico / Asociación..." required>
+            <form action="https://formspree.io/f/mzdydgdz" method="POST" class="form-mision">
+                <div class="form-grid">
+                    <div class="campo-mision">
+                        <label>Nombre / Entidad</label>
+                        <input type="text" name="nombre" placeholder="Tu respuesta..." required>
                     </div>
-
-                    <div class="grupo-form">
-                        <label>Email de contacto</label>
-                        <input type="email" name="_replyto" placeholder="tu-email@servidor.com" required>
+                    <div class="campo-mision">
+                        <label>Email</label>
+                        <input type="email" name="_replyto" placeholder="contacto@correo.com" required>
                     </div>
-
-                    <div class="grupo-form">
-                        <label>Tipo de Misión</label>
+                    <div class="campo-mision">
+                        <label>Interés</label>
                         <select name="actividad">
                             <option value="taller">Taller Práctico</option>
-                            <option value="charla">Charla Divulgativa</option>
-                            <option value="asesoria">Asesoría de Seguridad</option>
+                            <option value="charla">Charla / Conferencia</option>
+                            <option value="otros">Otros</option>
                         </select>
                     </div>
-
-                    <div class="grupo-form">
-                        <label>Mensaje / Detalles del evento</label>
-                        <textarea name="mensaje" rows="4" placeholder="Cuéntame fechas aproximadas, público objetivo..." required></textarea>
+                    <div class="campo-mision">
+                        <label>Público</label>
+                        <input type="text" name="publico" placeholder="Ej. Mayores, jóvenes...">
                     </div>
+                </div>
+                <div class="campo-mision">
+                    <label>Mensaje</label>
+                    <textarea name="mensaje" rows="3" placeholder="Cuéntame brevemente qué necesitas..." required></textarea>
+                </div>
 
-                    <input type="text" name="_gotcha" style="display:none">
-
-                    <button type="submit" class="btn-enviar-cyber">ENVIAR SOLICITUD</button>
-                </form>
-            </div>
+                <input type="text" name="_gotcha" style="display:none">
+                
+                <button type="submit" class="btn-enviar-cyber">ENVIAR SOLICITUD DE ACCESO</button>
+            </form>
             
-            <p style="margin-top: 30px; font-size: 0.9rem; text-align: center;">
-                <a href="privacidad.html" style="color: var(--fucsia); text-decoration: none; font-family: 'Orbitron';">[ VER PROTOCOLO DE PRIVACIDAD ]</a>
+            <p style="margin-top: 25px; font-size: 0.8rem; text-align: center;">
+                <a href="privacidad.html" style="color: var(--fucsia); text-decoration: none;">Ver Protocolo de Privacidad</a>
             </p>
         </div>
     </div>
