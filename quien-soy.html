@@ -75,7 +75,6 @@
 
         h3 { font-family: 'Orbitron'; color: var(--cian); font-size: 1.8rem; margin-top: 40px; margin-bottom: 10px; }
 
-        /* --- ESTILOS DEL FORMULARIO INTEGRADO --- */
         .form-mision {
             margin-top: 25px;
             padding-top: 25px;
@@ -117,6 +116,27 @@
         .campo-mision textarea { grid-column: span 2; }
         @media (max-width: 600px) { .campo-mision textarea { grid-column: span 1; } }
 
+        /* Estilo para el Checkbox de Privacidad */
+        .privacidad-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .privacidad-check input {
+            margin-right: 10px;
+            accent-color: var(--fucsia);
+            width: 18px;
+            height: 18px;
+        }
+
+        .privacidad-check a {
+            color: var(--cian);
+            text-decoration: underline;
+        }
+
         .btn-enviar-cyber {
             background: var(--amarillo);
             color: var(--fondo);
@@ -129,7 +149,6 @@
             box-shadow: 0 0 10px var(--amarillo);
             transition: 0.3s;
             width: 100%;
-            margin-top: 10px;
         }
 
         .btn-enviar-cyber:hover {
@@ -201,14 +220,15 @@
                     <textarea name="mensaje" rows="3" placeholder="Cuéntame brevemente qué necesitas..." required></textarea>
                 </div>
 
+                <label class="privacidad-check">
+                    <input type="checkbox" name="aceptar-privacidad" required>
+                    He leído y acepto el <a href="privacidad.html" target="_blank">Protocolo de Privacidad</a>.
+                </label>
+
                 <input type="text" name="_gotcha" style="display:none">
                 
                 <button type="submit" class="btn-enviar-cyber">ENVIAR SOLICITUD DE ACCESO</button>
             </form>
-            
-            <p style="margin-top: 25px; font-size: 0.8rem; text-align: center;">
-                <a href="privacidad.html" style="color: var(--fucsia); text-decoration: none;">Ver Protocolo de Privacidad</a>
-            </p>
         </div>
     </div>
 
