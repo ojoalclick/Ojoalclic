@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Escape del Chivato | ojo al clic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fondo: #050a14;
+            --cian: #00ffff;
+            --fucsia: #ff00ff;
+            --amarillo: #fbff00;
+        }
+
+        body { 
+            background: var(--fondo); 
+            color: white; 
+            font-family: 'Orbitron', sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            overflow: hidden; 
+        }
+
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        canvas {
+            background: #0d1a30;
+            border: 4px solid var(--cian);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            max-width: 90%;
+            max-height: 70vh;
+            cursor: none;
+        }
+
+        .stats {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: var(--amarillo);
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            color: var(--fucsia);
+            text-decoration: none;
+            border: 1px solid var(--fucsia);
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { background: var(--fucsia); color: white; }
+
+        #overlay {
+            position: absolute;
+            background: rgba(5, 10, 20, 0.9);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        button {
+            background: var(--cian);
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Orbitron';
+            font-weight: 900;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="overlay">
+        <h1>📱 ESCAPE DEL CHIVATO</h1>
+        <p>Eres un "LIKE" privado. ¡No dejes que los ojos espía te rastreen!</p>
+        <p style="color: var(--amarillo); font-size: 0.8rem;">Mueve el ratón para esquivar. ¡Aguanta 30 segundos!</p>
+        <button onclick="startGame()">INICIAR MISIÓN</button>
+    </div>
+
+    <div class="stats">TIEMPO: <span id="timer">0</span>s | NIVEL: <span id="level">1</span></div>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    
+    <a href="../recreativo.html" class="back-btn">← SALIR AL RECREATIVO</a>
+</div>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const timerDisplay = document.getElementById('timer');
+    const levelDisplay = document.getElementById('level');
+    const overlay = document.getElementById('overlay');
+
+    let gameActive = false;
+    let score = 0;
+    let level = 1;
+    let player = { x: 300, y: 200, size: 20 };
+    let enemies = [];
+    let startTime;
+
+    // Seguir el ratón
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        player.x = e.clientX - rect.left;
+        player.y = e.clientY - rect.top;
+    });
+
+    function createEnemy() {
+        return {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * (4 + level),
+            vy: (Math.random() - 0.5) * (4 + level),
+            size: 25
+        };
+    }
+
+    function startGame() {
+        gameActive = true;
+        score = 0;
+        level = 1;
+        enemies = [createEnemy(), createEnemy(), createEnemy()];
+        startTime = Date.now();
+        overlay.style.display = 'none';
+        gameLoop();
+    }
+
+    function gameOver() {
+        gameActive = false;
+        overlay.style.display = 'flex';
+        overlay.innerHTML = `
+            <h1 style="color:var(--fucsia)">¡PILLADO! 👁️</h1>
+            <p>Un rastreador ha copiado tus datos.</p>
+            <p>Aguantaste: ${score} segundos</p>
+            <button onclick="location.reload()">REINTENTAR</button>
+        `;
+    }
+
+    function gameLoop() {
+        if (!gameActive) return;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Actualizar tiempo y dificultad
+        score = Math.floor((Date.now() - startTime) / 1000);
+        timerDisplay.innerText = score;
+        
+        if (score > level * 10) {
+            level++;
+            levelDisplay.innerText = level;
+            enemies.push(createEnemy());
+        }
+
+        // Dibujar Jugador (un Corazón/Like)
+        ctx.font = '25px Arial';
+        ctx.fillText('❤️', player.x - 12, player.y + 10);
+
+        // Dibujar y mover Enemigos (Ojos espía)
+        enemies.forEach(en => {
+            en.x += en.vx;
+            en.y += en.vy;
+
+            // Rebotes
+            if (en.x < 0 || en.x > canvas.width) en.vx *= -1;
+            if (en.y < 0 || en.y > canvas.height) en.vy *= -1;
+
+            ctx.font = '30px Arial';
+            ctx.fillText('👁️', en.x - 15, en.y + 15);
+
+            // Detección de colisión
+            const dx = player.x - en.x;
+            const dy = player.y - en.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < player.size + 10) {
+                gameOver();
+            }
+        });
+
+        requestAnimationFrame(gameLoop);
+    }
+</script>
+
+</body>
+</html>
