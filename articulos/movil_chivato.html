@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Tu móvil es un espía? | ojo al clic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* VARIABLES Y BASE (Mantenemos tu estilo) */
+        :root { 
+            --fondo: #050a14; 
+            --cian: #00ffff; 
+            --fucsia: #ff00ff; 
+            --amarillo: #fbff00; 
+            --blanco: #ffffff; 
+        }
+        
+        body { 
+            background-color: var(--fondo); 
+            color: var(--blanco); 
+            font-family: 'Open Sans', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.8; 
+        }
+
+        .container { 
+            max-width: 850px; 
+            margin: 0 auto; 
+            padding: 60px 20px; 
+        }
+        
+        h1 { 
+            font-family: 'Montserrat'; 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            color: var(--cian); 
+            text-shadow: 4px 4px var(--fucsia); 
+            text-transform: uppercase; 
+            text-align: center; 
+            line-height: 1.1; 
+            margin-bottom: 40px; 
+        }
+
+        h2 { 
+            color: var(--fucsia); 
+            border-left: 5px solid var(--cian); 
+            padding-left: 15px; 
+            margin-top: 50px; 
+            font-family: 'Montserrat'; 
+            text-transform: uppercase; 
+        }
+
+        .destacado { 
+            background: rgba(0, 255, 255, 0.1); 
+            border: 1px solid var(--cian); 
+            padding: 20px; 
+            border-radius: 10px; 
+            font-size: 1.1rem; 
+            margin-bottom: 30px; 
+        }
+
+        .back-btn { 
+            display: inline-block; 
+            margin-bottom: 30px; 
+            color: var(--cian); 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-family: 'Montserrat'; 
+            border: 1px solid var(--cian); 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            transition: 0.3s; 
+        }
+
+        .back-btn:hover { background: var(--cian); color: var(--fondo); }
+        
+        .separador { 
+            height: 4px; 
+            background: linear-gradient(to right, transparent, var(--fucsia), var(--cian), transparent); 
+            margin: 50px 0; 
+        }
+
+        b { color: var(--cian); }
+
+        .quote { 
+            border-left: 4px solid var(--amarillo); 
+            padding-left: 20px; 
+            font-style: italic; 
+            margin: 30px 0; 
+            background: rgba(251, 255, 0, 0.05); 
+            padding: 20px; 
+        }
+
+        /* ESTILOS DEL ESCÁNER INTERACTIVO */
+        #seccion-interactiva {
+            text-align: center; 
+            padding: 30px; 
+            background: #111; 
+            border-radius: 15px; 
+            border: 3px solid var(--cian); 
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            margin-top: 50px;
+        }
+
+        .foto-simulada {
+            width: 200px;
+            height: 200px;
+            background: #333;
+            margin: 0 auto 20px;
+            border: 2px dashed var(--amarillo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #scanner-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--cian);
+            box-shadow: 0 0 10px var(--cian);
+            top: -10px;
+            display: none;
+        }
+
+        #btn-scan {
+            background: var(--fucsia); 
+            color: #fff; 
+            border: none; 
+            padding: 15px 30px; 
+            font-family: 'Montserrat'; 
+            font-weight: 900; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            box-shadow: 0 5px 0 #990055;
+        }
+
+        #btn-scan:active { transform: translateY(4px); box-shadow: none; }
+
+        @keyframes scanning {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .dato-oculto {
+            font-family: 'Courier New', monospace;
+            color: var(--amarillo);
+            font-size: 0.9rem;
+            margin: 5px 0;
+            opacity: 0;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../index.html" class="back-btn">← VOLVER AL INICIO</a>
+        
+        <h1>🕵️‍♂️ TU MÓVIL ES UN CHIVATO: <br>¿ESTÁS DANDO PISTAS? 📱</h1>
+        
+        <div class="destacado">
+            ¿Crees que lo que haces en tu cuarto se queda en tu cuarto? <b>¡ERROR!</b> ❌ Si tienes el móvil en la mano, llevas un pequeño detective en el bolsillo que nunca duerme y lo cuenta <b>TODO</b>. Tus redes sociales saben más de ti que tu profesor de mates... ¡y tú les das las pistas gratis!
+        </div>
+
+        <h2>📍 1. EL "GPS" DEL ACOSADOR (TUS RUTINAS)</h2>
+        <p>¿Te crees muy listo publicando ese batido tan rico justo cuando te lo estás tomando? Pues acabas de enviarle una invitación a todo Internet.</p>
+        
+        <p>⏰ <b>El efecto "Migas de Pan":</b> Si cada martes a las 17:00 subes un story en la puerta de judo o de música, no estás compartiendo una foto: estás publicando tu <b>HORARIO SEMANAL</b>.</p>
+        
+        <p>🗺️ <b>La trampa del martes:</b> Un acosador no necesita ser un hacker de película. Solo tiene que mirar tus fotos pasadas para saber dónde vas a estar el próximo martes. ¡Le has dibujado el mapa del tesoro y el tesoro eres tú!</p>
+
+        <div class="separador"></div>
+
+        <h2>📸 2. LAS FOTOS QUE HABLAN POR LOS CODOS</h2>
+        <p>Tú ves una foto tuya saliendo guapísimo/a, pero el archivo de la foto guarda secretos que no se ven a simple vista:</p>
+
+        <p>🛰️ <b>Metadatos (EXIF):</b> Ese archivo grita la marca de tu móvil, la hora exacta y las <b>coordenadas GPS</b> de donde estabas. Aunque tú no lo escribas, la foto lo confiesa.</p>
+
+        <p>🔍 <b>Detalles de fondo:</b> El escudo de tu colegio en el chándal, el nombre de tu calle que sale de refilón o un póster en tu cuarto... ¡BUM! Ya saben dónde vives sin que hayas dicho ni "hola".</p>
+
+        <div class="separador"></div>
+
+        <h2>🧩 3. INGENIERÍA SOCIAL: EL PUZZLE DE TU VIDA</h2>
+        <p>Los malos en Internet no entran rompiendo muros digitales, entran por la puerta que tú dejas abierta:</p>
+
+        <p>🐶 <b>Uniendo puntos:</b> Una foto de tu perro (nombre de tu mascota), una felicitación de cumple (tu edad) y un "¡qué ganas de que vuelvan mis padres!" (casa vacía). </p>
+
+        <p>🔓 <b>Llaves gratis:</b> Acabas de dar las respuestas a tus preguntas de seguridad y la llave de tu casa a cualquier extraño. ¡Eres un puzzle demasiado fácil de montar!</p>
+
+        <div class="quote">
+            <b>💡 EL CONSEJO "ojo al clic" 👁️🖱️</b><br>
+            ¡Publica desde el futuro! 🚀 Si te estás comiendo una pizza increíble, disfruta del momento y <b>NO</b> la subas ahora. Súbela cuando ya estés en casa. Así, cuando alguien vea dónde estabas... ¡ya no podrá encontrarte! Despista al detective.
+        </div>
+
+        <hr style="border: 1px dashed var(--cian); margin: 50px 0;">
+
+        <div id="seccion-interactiva">
+            <h3 style="color: var(--cian); font-family: 'Montserrat'; margin-top: 0;">🔍 SIMULADOR DE RASTREO</h3>
+            <p style="font-size: 0.9rem;">Imagina que acabas de subir esta foto de tu perro a una red social. Mira lo que un extraño puede "extraer" de ella:</p>
+
+            <div class="foto-simulada">
+                🐶
+                <div id="scanner-line"></div>
+            </div>
+
+            <button onclick="iniciarEscaneo()" id="btn-scan">¡ESCANEAR MI FOTO!</button>
+
+            <div id="resultados-scan" style="margin-top: 20px; text-align: left; max-width: 300px; margin-left: auto; margin-right: auto;">
+                <div class="dato-oculto" id="dato1">> GPS: 40.4167° N, 3.7037° W</div>
+                <div class="dato-oculto" id="dato2">> HORA: Martes - 17:05 PM</div>
+                <div class="dato-oculto" id="dato3">> DISPOSITIVO: iPhone 15 Pro</div>
+                <div class="dato-oculto" id="dato4">> COLEGIO: Escudo detectado</div>
+            </div>
+            
+            <p id="msg-final" style="color: var(--fucsia); font-weight: bold; margin-top: 15px; opacity: 0;">⚠️ ¡ESTÁS EXPUESTO/A!</p>
+        </div>
+
+        <p style="text-align: center; margin-top: 60px;">
+            <a href="../index.html" class="back-btn">VOLVER A LA PORTADA</a>
+        </p>
+    </div>
+
+    <script>
+        function iniciarEscaneo() {
+            const btn = document.getElementById('btn-scan');
+            const line = document.getElementById('scanner-line');
+            const msgFinal = document.getElementById('msg-final');
+            
+            btn.style.display = "none";
+            line.style.display = "block";
+            line.style.animation = "scanning 2s linear infinite";
+
+            // Mostrar datos uno a uno
+            setTimeout(() => { document.getElementById('dato1').style.opacity = "1"; }, 1000);
+            setTimeout(() => { document.getElementById('dato2').style.opacity = "1"; }, 2000);
+            setTimeout(() => { document.getElementById('dato3').style.opacity = "1"; }, 3000);
+            setTimeout(() => { 
+                document.getElementById('dato4').style.opacity = "1";
+                line.style.animation = "none";
+                line.style.display = "none";
+                msgFinal.style.opacity = "1";
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
